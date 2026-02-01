@@ -32,10 +32,17 @@ Build the container:
 
 - `docker build -t config-pub:dev .`
 
+Build config-ingest:
+
+- `docker build -t config-ingest:dev -f Dockerfile.config-ingest .`
+
 ## Kubernetes
 
 A simple deployment is under `deploy/k8s/config-pub.yaml`. It mounts a ConfigMap at
 `/etc/config-pub/config.yaml`. You can mount TLS materials or credentials via Secrets.
+
+Config ingest (Kafka -> Arango) is under `deploy/k8s/config-ingest.yaml`. It uses the
+Jalapeno-style `/credentials/.username` + `/credentials/.password` secret.
 
 ## Configuration
 
@@ -47,3 +54,17 @@ See `config/config-pub.example.yaml` for full config options. Defaults:
 - Request timeout: `20s`
 - Kafka topic auto-create: `true` (when enabled, partitions and replication factor apply)
 - Interval: `5m` (set `run_once: true` to run a single cycle)
+
+## Config ingest matching
+
+`config-ingest` consumes `gnmi-config` and updates:
+
+- `igp_node` when an `/isis` update is present (IGP-only or IGP+BGP nodes).
+- `bgp_node` when `/bgp` is present and `/isis` is not.
+
+Matching priority:
+
+- `router_id` from Loopback0 IPv4 (preferred).
+- `name` from `/host-names` (IGP fallback).
+
+For BGP-only nodes, `router_id` and `asn` (from the BGP payload) are required.

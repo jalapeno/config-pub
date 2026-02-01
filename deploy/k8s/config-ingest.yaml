@@ -1,0 +1,43 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: config-ingest
+  namespace: jalapeno
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: config-ingest
+  template:
+    metadata:
+      labels:
+        app: config-ingest
+    spec:
+      containers:
+        - name: config-ingest
+          image: docker.io/iejalapeno/config-ingest:latest
+          imagePullPolicy: IfNotPresent
+          args:
+            - "--message-server"
+            - "broker.jalapeno:9092"
+            - "--kafka-topic"
+            - "gnmi-config"
+            - "--kafka-group"
+            - "config-ingest"
+            - "--database-server"
+            - "http://arangodb.jalapeno:8529"
+            - "--database-name"
+            - "jalapeno"
+            - "--igp-collection"
+            - "igp_node"
+            - "--bgp-collection"
+            - "bgp_node"
+          volumeMounts:
+            - name: credentials
+              mountPath: /credentials
+              readOnly: true
+      volumes:
+        - name: credentials
+          secret:
+            secretName: jalapeno
+

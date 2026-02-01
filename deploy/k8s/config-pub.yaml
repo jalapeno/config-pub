@@ -42,7 +42,7 @@ spec:
     spec:
       containers:
         - name: config-pub
-          image: config-pub:dev
+          image: config-pub:latest
           imagePullPolicy: IfNotPresent
           args:
             - "-config"

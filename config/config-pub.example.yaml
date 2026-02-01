@@ -1,0 +1,36 @@
+interval: 0s
+
+kafka:
+  brokers:
+    - "kafka:9092"
+  topic: "gnmi-config"
+  batch_timeout: 500ms
+  required_acks: "all"
+
+gnmi:
+  username: "admin"
+  password: "admin"
+  dial_timeout: 10s
+  request_timeout: 20s
+  insecure: false
+  encoding: "json_ietf"
+  type: "config"
+  paths:
+    - "/"
+  tls:
+    ca_file: "/etc/gnmi/ca.pem"
+    cert_file: "/etc/gnmi/client.pem"
+    key_file: "/etc/gnmi/client.key"
+    insecure_skip_verify: false
+
+hosts:
+  - name: "router-1"
+    address: "10.0.0.10:57400"
+    target: "router-1"
+  - name: "router-2"
+    address: "10.0.0.11:57400"
+    target: "router-2"
+    insecure: true
+    paths:
+      - "/openconfig-interfaces:interfaces"
+

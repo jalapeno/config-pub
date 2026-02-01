@@ -30,7 +30,7 @@ native types.
 
 Build the container:
 
-- `docker build -t config-pub:dev .`
+- `docker build -t config-pub:dev -f Dockerfile.config-publish .`
 
 Build config-ingest:
 

@@ -19,7 +19,7 @@ config-ingest:
 	$(MAKE) -C ./cmd/config-ingest compile-config-ingest
 
 config-pub-container: config-pub
-	docker build -t $(REGISTRY_NAME)/config-pub:$(IMAGE_VERSION) -f ./Dockerfile .
+	docker build -t $(REGISTRY_NAME)/config-pub:$(IMAGE_VERSION) -f ./Dockerfile.config-publish .
 
 config-ingest-container: config-ingest
 	docker build -t $(REGISTRY_NAME)/config-ingest:$(IMAGE_VERSION) -f ./Dockerfile.config-ingest .

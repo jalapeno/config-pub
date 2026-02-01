@@ -10,6 +10,9 @@ data:
       brokers:
         - "broker.jalapeno:9092"
       topic: "gnmi-config"
+      create_topic: true
+      topic_partitions: 3
+      topic_replication_factor: 1
     gnmi:
       dial_timeout: 10s
       request_timeout: 20s
@@ -21,9 +24,11 @@ data:
       - name: "xrd01"
         address: "172.20.1.101:57400"
         target: "xrd01"
-      - name: "xrd02"
-        address: "172.20.1.102:57400"
-        target: "xrd02"
+        insecure: true
+      - name: "xrd06"
+        address: "10.6.6.1:57400"
+        target: "xrd06"
+        insecure: true
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -42,7 +47,7 @@ spec:
     spec:
       containers:
         - name: config-pub
-          image: config-pub:latest
+          image: docker.io/iejalapeno/config-pub:latest
           imagePullPolicy: IfNotPresent
           args:
             - "-config"

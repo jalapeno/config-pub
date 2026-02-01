@@ -16,11 +16,14 @@ type Config struct {
 }
 
 type KafkaConfig struct {
-	Brokers        []string      `yaml:"brokers"`
-	Topic          string        `yaml:"topic"`
-	BatchTimeout   time.Duration `yaml:"batch_timeout"`
-	RequiredAcks   string        `yaml:"required_acks"`
-	MaxMessageSize int           `yaml:"max_message_size"`
+	Brokers                []string      `yaml:"brokers"`
+	Topic                  string        `yaml:"topic"`
+	CreateTopic            bool          `yaml:"create_topic"`
+	TopicPartitions        int           `yaml:"topic_partitions"`
+	TopicReplicationFactor int           `yaml:"topic_replication_factor"`
+	BatchTimeout           time.Duration `yaml:"batch_timeout"`
+	RequiredAcks           string        `yaml:"required_acks"`
+	MaxMessageSize         int           `yaml:"max_message_size"`
 }
 
 type GNMIConfig struct {
@@ -112,6 +115,12 @@ func (k *KafkaConfig) applyDefaults() {
 	}
 	if k.MaxMessageSize == 0 {
 		k.MaxMessageSize = 5 * 1024 * 1024
+	}
+	if k.TopicPartitions == 0 {
+		k.TopicPartitions = 1
+	}
+	if k.TopicReplicationFactor == 0 {
+		k.TopicReplicationFactor = 1
 	}
 }
 

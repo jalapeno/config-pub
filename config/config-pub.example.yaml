@@ -4,6 +4,9 @@ kafka:
   brokers:
     - "kafka:9092"
   topic: "gnmi-config"
+  create_topic: true
+  topic_partitions: 3
+  topic_replication_factor: 1
   batch_timeout: 500ms
   required_acks: "all"
 

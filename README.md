@@ -45,3 +45,4 @@ See `config/config-pub.example.yaml` for full config options. Defaults:
 - gNMI type: `config`
 - Dial timeout: `10s`
 - Request timeout: `20s`
+- Kafka topic auto-create: `true` (when enabled, partitions and replication factor apply)

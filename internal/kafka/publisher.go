@@ -4,6 +4,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"net"
 	"strings"
 	"time"
 
@@ -24,6 +25,11 @@ func NewPublisher(cfg config.KafkaConfig) (*Publisher, error) {
 	}
 	if cfg.Topic == "" {
 		return nil, fmt.Errorf("kafka topic is required")
+	}
+	if cfg.CreateTopic {
+		if err := ensureTopic(cfg); err != nil {
+			return nil, err
+		}
 	}
 
 	writer := &kafka.Writer{
@@ -74,4 +80,40 @@ func parseAcks(value string) kafka.RequiredAcks {
 	default:
 		return kafka.RequireAll
 	}
+}
+
+func ensureTopic(cfg config.KafkaConfig) error {
+	ctx, cancel := context.WithTimeout(context.Background(), 10*time.Second)
+	defer cancel()
+
+	conn, err := kafka.DialContext(ctx, "tcp", cfg.Brokers[0])
+	if err != nil {
+		return fmt.Errorf("dial broker: %w", err)
+	}
+	defer conn.Close()
+
+	controller, err := conn.Controller()
+	if err != nil {
+		return fmt.Errorf("fetch controller: %w", err)
+	}
+
+	controllerAddr := net.JoinHostPort(controller.Host, fmt.Sprintf("%d", controller.Port))
+	ctrlConn, err := kafka.DialContext(ctx, "tcp", controllerAddr)
+	if err != nil {
+		return fmt.Errorf("dial controller: %w", err)
+	}
+	defer ctrlConn.Close()
+
+	err = ctrlConn.CreateTopics(kafka.TopicConfig{
+		Topic:             cfg.Topic,
+		NumPartitions:     cfg.TopicPartitions,
+		ReplicationFactor: cfg.TopicReplicationFactor,
+	})
+	if err == nil {
+		return nil
+	}
+	if strings.Contains(strings.ToLower(err.Error()), "already exists") {
+		return nil
+	}
+	return fmt.Errorf("create topic %q: %w", cfg.Topic, err)
 }

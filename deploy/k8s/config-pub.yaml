@@ -19,7 +19,14 @@ data:
       encoding: "json_ietf"
       type: "config"
       paths:
-        - "/"
+        - "/Cisco-IOS-XR-ipv4-bgp-cfg:bgp"
+        - "/openconfig-interfaces:interfaces"
+        - "/openconfig-network-instance:network-instances"
+        - "/openconfig-bgp:bgp"
+        - "/openconfig-isis:isis"
+        - "/openconfig-segment-routing:segment-routing"
+        - "/openconfig-lldp:lldp"
+        - "/openconfig-system:system"
     hosts:
       - name: "xrd01"
         address: "172.20.1.101:57400"

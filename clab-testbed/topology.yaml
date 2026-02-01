@@ -206,7 +206,7 @@ topology:
     - endpoints: ["xrd04:Gi0-0-0-1", "xrd08:Gi0-0-0-3"]
     - endpoints: ["xrd04:Gi0-0-0-2", "xrd16:Gi0-0-0-2"]
     - endpoints: ["xrd04:Gi0-0-0-3", "xrd06:Gi0-0-0-0"]
-    - endpoints: ["xrd04:Gi0-0-0-4", "config-pub:xrd04-Gi0-0-0-4"]
+    - endpoints: ["xrd04:Gi0-0-0-7", "config-pub:xrd04-Gi0-0-0-7"]
 
     - endpoints: ["xrd06:Gi0-0-0-2", "xrd06-host:xrd06-Gi0-0-0-2"]
     - endpoints: ["frr06:eth1","xrd06-host:frr06-eth1"]

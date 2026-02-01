@@ -13,6 +13,7 @@ type Config struct {
 	GNMI     GNMIConfig    `yaml:"gnmi"`
 	Hosts    []Host        `yaml:"hosts"`
 	Interval time.Duration `yaml:"interval"`
+	RunOnce  bool          `yaml:"run_once"`
 }
 
 type KafkaConfig struct {
@@ -85,6 +86,9 @@ func Load(path string) (*Config, error) {
 
 	cfg.Kafka.applyDefaults()
 	cfg.GNMI.applyDefaults()
+	if cfg.Interval == 0 {
+		cfg.Interval = 5 * time.Minute
+	}
 
 	if v := os.Getenv("GNMI_USERNAME"); v != "" {
 		cfg.GNMI.Username = v

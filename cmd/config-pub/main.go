@@ -60,9 +60,14 @@ func main() {
 		}
 	}
 
-	if cfg.Interval <= 0 {
+	if cfg.RunOnce {
 		run()
 		return
+	}
+
+	if cfg.Interval <= 0 {
+		log.Print("interval not set; defaulting to 5m")
+		cfg.Interval = 5 * time.Minute
 	}
 
 	ticker := time.NewTicker(cfg.Interval)

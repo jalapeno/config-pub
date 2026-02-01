@@ -1,4 +1,5 @@
-interval: 0s
+interval: 5m
+run_once: false
 
 kafka:
   brokers:

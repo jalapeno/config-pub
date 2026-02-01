@@ -46,3 +46,4 @@ See `config/config-pub.example.yaml` for full config options. Defaults:
 - Dial timeout: `10s`
 - Request timeout: `20s`
 - Kafka topic auto-create: `true` (when enabled, partitions and replication factor apply)
+- Interval: `5m` (set `run_once: true` to run a single cycle)

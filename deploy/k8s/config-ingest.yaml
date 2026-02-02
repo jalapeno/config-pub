@@ -25,7 +25,7 @@ spec:
             - "--kafka-group"
             - "config-ingest"
             - "--database-server"
-            - "http://arangodb.jalapeno:8529"
+            - "http://arangodb:8529"
             - "--database-name"
             - "jalapeno"
             - "--igp-collection"

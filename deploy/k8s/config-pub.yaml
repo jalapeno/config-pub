@@ -30,7 +30,90 @@ data:
         address: "172.20.2.101:57400"
         target: "xrd01"
         insecure: true
-
+      - name: "xrd02"
+        address: "172.20.2.102:57400"
+        target: "xrd02"
+        insecure: true
+      - name: "xrd03"
+        address: "172.20.2.103:57400"
+        target: "xrd03"
+        insecure: true
+      - name: "xrd04"
+        address: "172.20.2.104:57400"
+        target: "xrd04"
+        insecure: true
+      - name: "xrd06"
+        address: "172.20.2.106:57400"
+        target: "xrd06"
+        insecure: true
+      - name: "xrd07"
+        address: "172.20.2.107:57400"
+        target: "xrd07"
+        insecure: true
+      - name: "xrd08"
+        address: "172.20.2.108:57400"
+        target: "xrd08"
+        insecure: true
+      - name: "xrd09"
+        address: "172.20.2.109:57400"
+        target: "xrd09"
+        insecure: true
+      - name: "xrd15"
+        address: "172.20.2.115:57400"
+        target: "xrd15"
+        insecure: true
+      - name: "xrd16"
+        address: "172.20.2.116:57400"
+        target: "xrd16"
+        insecure: true
+      - name: "xrd17"
+        address: "172.20.2.117:57400"
+        target: "xrd17"
+        insecure: true
+      - name: "xrd18"
+        address: "172.20.2.118:57400"
+        target: "xrd18"
+        insecure: true
+      - name: "xrd25"
+        address: "172.20.2.125:57400"
+        target: "xrd25"
+        insecure: true
+      - name: "xrd28"
+        address: "172.20.2.128:57400"
+        target: "xrd28"
+        insecure: true
+      - name: "xrd29"
+        address: "172.20.2.129:57400"
+        target: "xrd29"
+        insecure: true
+      - name: "xrd31"
+        address: "172.20.2.131:57400"
+        target: "xrd31"
+        insecure: true
+      - name: "xrd32"
+        address: "172.20.2.132:57400"
+        target: "xrd32"
+        insecure: true
+      - name: "xrd40"
+        address: "172.20.2.140:57400"
+        target: "xrd40"
+        insecure: true
+      - name: "xrd41"
+        address: "172.20.2.141:57400"
+        target: "xrd41"
+        insecure: true
+      - name: "xrd42"
+        address: "172.20.2.142:57400"
+        target: "xrd42"
+        insecure: true
+      - name: "xrd43"
+        address: "172.20.2.143:57400"
+        target: "xrd43"
+        insecure: true
+      - name: "xrd46"
+        address: "172.20.2.146:57400"
+        target: "xrd46"
+        insecure: true
 ---
 apiVersion: apps/v1
 kind: Deployment

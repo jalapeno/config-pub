@@ -220,7 +220,7 @@ topology:
 
     - endpoints: ["xrd08:Gi0-0-0-1", "xrd09:Gi0-0-0-1"]
     - endpoints: ["xrd08:Gi0-0-0-2", "xrd16:Gi0-0-0-1"]
-    - endpoints: ["xrd08:Gi0-0-0-5", "config-pub:xrd08-Gi0-0-0-5"]
+    - endpoints: ["xrd08:Gi0-0-0-4", "config-pub:xrd08-Gi0-0-0-4"]
 
     - endpoints: ["xrd09:Gi0-0-0-2", "xrd09-host:xrd09-Gi0-0-0-2"]
     - endpoints: ["frr09:eth1","xrd09-host:frr09-eth1"]
@@ -240,11 +240,19 @@ topology:
     - endpoints: ["xrd17:Gi0-0-0-1", "xrd29:Gi0-0-0-0"]
     - endpoints: ["xrd17:Gi0-0-0-2", "config-pub:xrd17-Gi0-0-0-2"]
 
+    - endpoints: ["xrd18:Gi0-0-0-5", "config-pub:xrd18-Gi0-0-0-5"]
+
+    - endpoints: ["xrd25:Gi0-0-0-1", "config-pub:xrd25-Gi0-0-0-1"]
+
     - endpoints: ["xrd28:Gi0-0-0-1", "xrd29:Gi0-0-0-1"]
     - endpoints: ["xrd28:Gi0-0-0-2", "config-pub:xrd28-Gi0-0-0-2"]
 
+    - endpoints: ["xrd29:Gi0-0-0-2", "config-pub:xrd29-Gi0-0-0-2"]
+
     - endpoints: ["xrd31:Gi0-0-0-1", "xrd32:Gi0-0-0-0"]
     - endpoints: ["xrd31:Gi0-0-0-2", "config-pub:xrd31-Gi0-0-0-2"]
+
+    - endpoints: ["xrd32:Gi0-0-0-2", "config-pub:xrd32-Gi0-0-0-2"]
 
     - endpoints: ["xrd40:Gi0-0-0-2", "xrd42:Gi0-0-0-0"]
     - endpoints: ["xrd40:Gi0-0-0-3", "xrd43:Gi0-0-0-0"]
